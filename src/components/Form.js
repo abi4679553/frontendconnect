@@ -45,7 +45,7 @@ function Form() {
     return (
         <div className=" w-[300px] mx-auto mt-12 p-5 border border-gray-400 rounded-lg text-center " >
 
-            <h2 className="text-blue-700  text-2xl p-5">Registration Form</h2>
+            <h2 className="text-blue-700  text-2xl p-5  hover:bg-slate-600 hover:text-white rounded-3x">Registration Form</h2>
 
             <label>Name</label>
             <br />
@@ -64,7 +64,7 @@ function Form() {
             <input type="password" placeholder="Enter Password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
             <br />
 
-            <button type="button" onClick={handlesumbit}>Submit</button>
+            <button type="button" onClick={handlesumbit} className="text-blue-500 hover:bg-slate-600 hover:text-white  p-2 rounded-3xl">Submit</button>
         </div>
     );
 }
