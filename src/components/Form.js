@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 
 function Form() {
     const [formData, setFormData] = useState({
@@ -6,16 +6,15 @@ function Form() {
         email: "",
         password: "",
     });
+    const[result , setResult] =useState([])
 
     const { name, email, password } = formData;
-
-
-    
 
 
     console.log("name", name)
     console.log("email", email)
     console.log("password", password)
+    console.log("result", result)
 
     const handlesumbit = () => {
         console.log("condition true")
@@ -41,6 +40,23 @@ function Form() {
         )
 
     }
+useEffect(() => {
+    fetch(`http://localhost:5000/fetchform`, {
+        method: "GET"
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert(data.message);
+            setResult(data.form);
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(err => {
+        console.log("Error in the fetch data", err);
+    });
+}, []);
 
     return (
         <div className=" w-[300px] mx-auto mt-12 p-5 border border-gray-400 rounded-lg text-center " >
