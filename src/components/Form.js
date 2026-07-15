@@ -1,12 +1,14 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 function Form() {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         name: "",
         email: "",
         password: "",
     });
-    const[result , setResult] =useState([])
+  
 
     const { name, email, password } = formData;
 
@@ -14,7 +16,6 @@ function Form() {
     console.log("name", name)
     console.log("email", email)
     console.log("password", password)
-    console.log("result", result)
 
     const handlesumbit = () => {
         console.log("condition true")
@@ -29,6 +30,8 @@ function Form() {
         .then(data=>{
             if(data.success){
                 alert(data.message)
+                navigate('/users')
+
             }
             else{
                 alert(data.message)
@@ -40,48 +43,71 @@ function Form() {
         )
 
     }
-useEffect(() => {
-    fetch(`http://localhost:5000/fetchform`, {
-        method: "GET"
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            alert(data.message);
-            setResult(data.form);
-        } else {
-            alert(data.message);
-        }
-    })
-    .catch(err => {
-        console.log("Error in the fetch data", err);
-    });
-}, []);
+
 
     return (
-        <div className=" w-[300px] mx-auto mt-12 p-5 border border-gray-400 rounded-lg text-center " >
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-indigo-200 to-purple-200">
 
-            <h2 className="text-blue-700  text-2xl p-5  hover:bg-slate-600 hover:text-white rounded-3x">Registration Form</h2>
+    <div className="w-[350px] bg-white shadow-xl rounded-xl p-6">
 
-            <label>Name</label>
-            <br />
-            <input type="text" placeholder="Enter Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+        <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">
+            Registration Form
+        </h2>
 
-            <br />
+        <form className="space-y-4">
 
-            <label>Email</label>
-            <br />
-            <input type="email" placeholder="Enter Email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} />
+            <div>
+                <label className="block text-left text-gray-700 mb-1">Name</label>
+                <input
+                    className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    type="text"
+                    placeholder="Enter Name"
+                    value={formData.name}
+                    onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                    }
+                />
+            </div>
 
-            <br />
+            <div>
+                <label className="block text-left text-gray-700 mb-1">Email</label>
+                <input
+                    className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    type="email"
+                    placeholder="Enter Email"
+                    value={formData.email}
+                    onChange={(e) =>
+                        setFormData({ ...formData, email: e.target.value })
+                    }
+                />
+            </div>
 
-            <label>Password</label>
-            <br />
-            <input type="password" placeholder="Enter Password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
-            <br />
+            <div>
+                <label className="block text-left text-gray-700 mb-1">Password</label>
+                <input
+                    className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    type="password"
+                    placeholder="Enter Password"
+                    value={formData.password}
+                    onChange={(e) =>
+                        setFormData({ ...formData, password: e.target.value })
+                    }
+                />
+            </div>
 
-            <button type="button" onClick={handlesumbit} className="text-blue-500 hover:bg-slate-600 hover:text-white  p-2 rounded-3xl">Submit</button>
-        </div>
+            <button
+                type="button"
+                onClick={handlesumbit}
+                className="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-300"
+            >
+                Submit
+            </button>
+
+        </form>
+
+    </div>
+</div>
+        
     );
 }
 
