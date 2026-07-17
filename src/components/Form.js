@@ -4,16 +4,16 @@ import { useNavigate } from "react-router-dom";
 function Form() {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
-        name: "",
+        Name: "",
         email: "",
         password: "",
     });
   
 
-    const { name, email, password } = formData;
+    const { Name, email, password } = formData;
 
 
-    console.log("name", name)
+    console.log("Name", Name)
     console.log("email", email)
     console.log("password", password)
 
@@ -24,7 +24,7 @@ function Form() {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({name , email , password })
+            body: JSON.stringify({Name , email , password })
         })
         .then(r =>r.json())
         .then(data=>{
@@ -62,9 +62,9 @@ function Form() {
                     className="w-full border border-gray-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
                     type="text"
                     placeholder="Enter Name"
-                    value={formData.name}
+                    value={formData.Name}
                     onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
+                        setFormData({ ...formData, Name: e.target.value })
                     }
                 />
             </div>

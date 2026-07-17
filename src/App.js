@@ -9,6 +9,7 @@ function App() {
       </Routes>
 
       <Form />
+      <table />
    
     </div>
   );
