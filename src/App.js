@@ -1,16 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import Form from "./components/Form"
+import Form from "./components/Form";
+import Getmethod from "./components/getmethod";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path = "/user" element= {<Form/>}/>
+        <Route path="/" element={<Form />} />
+        <Route path="/users" element={<Getmethod />} />
       </Routes>
-
-      <Form />
-      <table />
-   
     </div>
   );
 }
